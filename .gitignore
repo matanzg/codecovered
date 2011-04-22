@@ -1,0 +1,15 @@
+
+/src/CodeCovered.GeoShop/packages
+/src/CodeCovered.GeoShop/_ReSharper.CodeCovered.GeoShop
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.suo
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.5.1.ReSharper.user
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Mapping.Tests/bin
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Integration.Tests/bin
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Mapping/bin
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Infrastructure/bin
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Entities/bin
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Mapping/obj
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Infrastructure/obj
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Entities/obj
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Mapping.Tests/obj
+/src/CodeCovered.GeoShop/CodeCovered.GeoShop.Integration.Tests/obj
