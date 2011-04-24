@@ -1,9 +1,7 @@
-using System;
-using CodeCovered.GeoShop.Entities;
-using CodeCovered.GeoShop.Mapping.Fluent.Behaviors;
-using FluentNHibernate.Mapping;
+using CodeCovered.GeoShop.Server.Entities;
+using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 
-namespace CodeCovered.GeoShop.Mapping.Fluent
+namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
     public class BranchMap : ClassMapWithBehaviors<Branch>
     {

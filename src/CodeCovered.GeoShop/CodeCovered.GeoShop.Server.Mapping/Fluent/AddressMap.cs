@@ -1,7 +1,7 @@
-using CodeCovered.GeoShop.Entities;
+using CodeCovered.GeoShop.Server.Entities;
 using FluentNHibernate.Mapping;
 
-namespace CodeCovered.GeoShop.Mapping.Fluent
+namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
     public class AddressMap : ComponentMap<Address>
     {

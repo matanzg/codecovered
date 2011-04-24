@@ -81,6 +81,14 @@
       <Project>{47EE14C5-3B4E-48BE-9DFE-2000066EDF9B}</Project>
       <Name>CodeCovered.GeoShop.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeCovered.GeoShop.Server.Entities\CodeCovered.GeoShop.Server.Entities.csproj">
+      <Project>{361555D1-4F9D-4951-8D1C-5194B0AACE96}</Project>
+      <Name>CodeCovered.GeoShop.Server.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeCovered.GeoShop.Server.Mapping\CodeCovered.GeoShop.Server.Mapping.csproj">
+      <Project>{B16EF899-B1F4-47AA-8A1E-46C6E222556B}</Project>
+      <Name>CodeCovered.GeoShop.Server.Mapping</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -5,7 +5,7 @@ using CodeCovered.GeoShop.Infrastructure.Entities;
 using GeoAPI.Geometries;
 using GisSharpBlog.NetTopologySuite.Geometries;
 
-namespace CodeCovered.GeoShop.Entities
+namespace CodeCovered.GeoShop.Server.Entities
 {
     public class Country : IntEntity, IHaveGeoData
     {

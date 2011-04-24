@@ -1,16 +1,14 @@
-using System;
 using System.Linq;
-using CodeCovered.GeoShop.Entities;
 using CodeCovered.GeoShop.Infrastructure.Factories;
 using CodeCovered.GeoShop.Infrastructure.NHibernate;
 using CodeCovered.GeoShop.Infrastructure.NHibernate.Spatial;
-using CodeCovered.GeoShop.Mapping.Fluent;
+using CodeCovered.GeoShop.Server.Entities;
+using CodeCovered.GeoShop.Server.Mapping.Fluent;
 using FluentNHibernate.Cfg;
-using GeoAPI.Geometries;
 using GisSharpBlog.NetTopologySuite.Geometries;
 using NUnit.Framework;
 
-namespace CodeCovered.GeoShop.Mapping.Tests
+namespace CodeCovered.GeoShop.Server.Mapping.Tests
 {
     [TestFixture]
     public abstract class DomainBaseTest : NHibernateBaseTest

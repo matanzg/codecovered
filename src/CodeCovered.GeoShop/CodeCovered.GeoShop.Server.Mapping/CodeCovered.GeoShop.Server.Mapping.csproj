@@ -8,8 +8,8 @@
     <ProjectGuid>{B16EF899-B1F4-47AA-8A1E-46C6E222556B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeCovered.GeoShop.Mapping</RootNamespace>
-    <AssemblyName>CodeCovered.GeoShop.Mapping</AssemblyName>
+    <RootNamespace>CodeCovered.GeoShop.Server.Mapping</RootNamespace>
+    <AssemblyName>CodeCovered.GeoShop.Server.Mapping</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

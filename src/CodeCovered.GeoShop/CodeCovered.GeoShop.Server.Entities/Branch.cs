@@ -1,10 +1,9 @@
-using System;
 using CodeCovered.GeoShop.Infrastructure;
 using CodeCovered.GeoShop.Infrastructure.Entities;
 using GeoAPI.Geometries;
 using GisSharpBlog.NetTopologySuite.Geometries;
 
-namespace CodeCovered.GeoShop.Entities
+namespace CodeCovered.GeoShop.Server.Entities
 {
     public class Branch : IntEntity, IHaveGeoData
     {

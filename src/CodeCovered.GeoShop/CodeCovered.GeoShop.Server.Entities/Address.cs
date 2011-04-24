@@ -1,4 +1,4 @@
-﻿namespace CodeCovered.GeoShop.Entities
+﻿namespace CodeCovered.GeoShop.Server.Entities
 {
     public class Address
     {

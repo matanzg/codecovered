@@ -1,8 +1,7 @@
-using CodeCovered.GeoShop.Entities;
-using FluentNHibernate.Mapping;
-using CodeCovered.GeoShop.Mapping.Fluent.Behaviors;
+using CodeCovered.GeoShop.Server.Entities;
+using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 
-namespace CodeCovered.GeoShop.Mapping.Fluent
+namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
     public class PersonMap : ClassMapWithBehaviors<Person>
     {

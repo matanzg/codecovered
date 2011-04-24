@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
-using CodeCovered.GeoShop.Entities;
 using CodeCovered.GeoShop.Infrastructure.Factories;
-using CodeCovered.GeoShop.Mapping;
+using CodeCovered.GeoShop.Server.Entities;
 using GeoAPI.Geometries;
 using GisSharpBlog.NetTopologySuite.Geometries;
 using NHibernate.Linq;

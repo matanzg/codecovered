@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using CodeCovered.GeoShop.Entities;
-using CodeCovered.GeoShop.Infrastructure.Factories;
+using CodeCovered.GeoShop.Server.Entities;
 using FluentNHibernate.Testing;
-using GisSharpBlog.NetTopologySuite.Geometries;
 using NUnit.Framework;
 
-namespace CodeCovered.GeoShop.Mapping.Tests
+namespace CodeCovered.GeoShop.Server.Mapping.Tests
 {
     [TestFixture]
     public class PersistenceSpecificationTests : DomainBaseTest

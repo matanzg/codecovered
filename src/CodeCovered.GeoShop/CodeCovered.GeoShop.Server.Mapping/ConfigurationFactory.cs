@@ -1,13 +1,13 @@
 using CodeCovered.GeoShop.Infrastructure.NHibernate.Conventions;
 using CodeCovered.GeoShop.Infrastructure.NHibernate.Spatial;
-using CodeCovered.GeoShop.Mapping.Fluent;
+using CodeCovered.GeoShop.Server.Mapping.Fluent;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate.Cfg;
 using NHibernate.Spatial.Dialect;
 using NHibernate.Tool.hbm2ddl;
 
-namespace CodeCovered.GeoShop.Mapping
+namespace CodeCovered.GeoShop.Server.Mapping
 {
     public static class ConfigurationFactory
     {

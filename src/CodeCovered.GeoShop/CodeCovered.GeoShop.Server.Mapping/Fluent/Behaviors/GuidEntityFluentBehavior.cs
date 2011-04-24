@@ -1,8 +1,7 @@
-using System;
 using CodeCovered.GeoShop.Infrastructure.Entities;
 using FluentNHibernate.Mapping;
 
-namespace CodeCovered.GeoShop.Mapping.Fluent.Behaviors
+namespace CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors
 {
     public class GuidEntityFluentBehavior<T> : IFluentBehavior<T>
         where T : GuidEntity

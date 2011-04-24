@@ -1,10 +1,9 @@
-using System;
 using CodeCovered.GeoShop.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using CodeCovered.GeoShop.Infrastructure.Entities;
 
-namespace CodeCovered.GeoShop.Entities
+namespace CodeCovered.GeoShop.Server.Entities
 {
     public class Store : IntEntity
     {

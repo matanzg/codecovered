@@ -1,10 +1,8 @@
-using System;
-using System.Linq;
-using CodeCovered.GeoShop.Mapping.Fluent.Behaviors;
-using CodeCovered.GeoShop.Entities;
+using CodeCovered.GeoShop.Server.Entities;
+using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 using FluentNHibernate.Mapping;
 
-namespace CodeCovered.GeoShop.Mapping.Fluent
+namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
     public class CountryMap : ClassMapWithBehaviors<Country>
     {
