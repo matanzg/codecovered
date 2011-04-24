@@ -16,6 +16,7 @@ namespace CodeCovered.GeoShop.Mapping.Tests
         {
             get { return true; }
         }
+
         [Test]
         public void TestBranchMap()
         {

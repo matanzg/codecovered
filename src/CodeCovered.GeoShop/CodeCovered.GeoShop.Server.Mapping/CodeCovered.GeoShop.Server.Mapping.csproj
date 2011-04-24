@@ -82,9 +82,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeCovered.GeoShop.Entities\CodeCovered.GeoShop.Entities.csproj">
+    <ProjectReference Include="..\CodeCovered.GeoShop.Server.Entities\CodeCovered.GeoShop.Server.Entities.csproj">
       <Project>{361555D1-4F9D-4951-8D1C-5194B0AACE96}</Project>
-      <Name>CodeCovered.GeoShop.Entities</Name>
+      <Name>CodeCovered.GeoShop.Server.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\CodeCovered.GeoShop.Infrastructure\CodeCovered.GeoShop.Infrastructure.csproj">
       <Project>{47EE14C5-3B4E-48BE-9DFE-2000066EDF9B}</Project>

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CodeCovered.GeoShop.Entities")]
+[assembly: AssemblyTitle("CodeCovered.GeoShop.Server.BL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("CodeCovered.GeoShop.Entities")]
+[assembly: AssemblyProduct("CodeCovered.GeoShop.Server.BL")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d4390578-d1b1-4478-abf5-66d3fe9af239")]
+[assembly: Guid("604d5506-b937-407c-84c9-a35ef78d42ce")]
 
 // Version information for an assembly consists of the following four values:
 //

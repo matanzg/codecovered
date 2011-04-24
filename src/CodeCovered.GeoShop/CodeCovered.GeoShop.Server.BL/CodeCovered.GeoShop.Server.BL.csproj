@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{361555D1-4F9D-4951-8D1C-5194B0AACE96}</ProjectGuid>
+    <ProjectGuid>{FBCCBCBD-51F8-4A3E-8F78-CEFFD010D1F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeCovered.GeoShop.Entities</RootNamespace>
-    <AssemblyName>CodeCovered.GeoShop.Entities</AssemblyName>
+    <RootNamespace>CodeCovered.GeoShop.Server.BL</RootNamespace>
+    <AssemblyName>CodeCovered.GeoShop.Server.BL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GeoAPI">
-      <HintPath>..\..\..\lib\GeoAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="NetTopologySuite, Version=1.7.3.36606, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,26 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Branch.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Store.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeCovered.GeoShop.Infrastructure\CodeCovered.GeoShop.Infrastructure.csproj">
-      <Project>{47EE14C5-3B4E-48BE-9DFE-2000066EDF9B}</Project>
-      <Name>CodeCovered.GeoShop.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
