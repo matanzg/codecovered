@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.0.9999.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
@@ -64,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper\ProductMapCreator.cs" />
     <Compile Include="ConfigurationFactory.cs" />
     <Compile Include="Fluent\AddressMap.cs" />
     <Compile Include="Fluent\Behaviors\ClassMapWithBehaviors.cs" />
@@ -72,9 +77,12 @@
     <Compile Include="Fluent\Behaviors\GeoDataFluentBehavior.cs" />
     <Compile Include="Fluent\Behaviors\IntEntityFluentBehavior.cs" />
     <Compile Include="Fluent\BranchMap.cs" />
+    <Compile Include="Fluent\CategoryMap.cs" />
     <Compile Include="Fluent\CityMap.cs" />
     <Compile Include="Fluent\CountryMap.cs" />
+    <Compile Include="Fluent\InventoryItemMap.cs" />
     <Compile Include="Fluent\PersonMap.cs" />
+    <Compile Include="Fluent\ProductMap.cs" />
     <Compile Include="Fluent\StoreMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -82,6 +90,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeCovered.GeoShop.Contracts\CodeCovered.GeoShop.Contracts.csproj">
+      <Project>{74D90EA3-3D0E-45AB-B683-20592B24BC6B}</Project>
+      <Name>CodeCovered.GeoShop.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeCovered.GeoShop.Server.Entities\CodeCovered.GeoShop.Server.Entities.csproj">
       <Project>{361555D1-4F9D-4951-8D1C-5194B0AACE96}</Project>
       <Name>CodeCovered.GeoShop.Server.Entities</Name>

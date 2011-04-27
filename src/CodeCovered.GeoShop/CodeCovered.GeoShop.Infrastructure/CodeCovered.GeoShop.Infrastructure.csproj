@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\lib\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
@@ -70,6 +73,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper\ApplyMap.cs" />
+    <Compile Include="AutoMapper\AutoMapperExtensions.cs" />
+    <Compile Include="AutoMapper\ICreateMap.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\IHaveGeoData.cs" />
     <Compile Include="Factories\Default.cs" />
@@ -85,6 +92,7 @@
     <Compile Include="NHibernate\Conventions\UnderscorePropertyConvention.cs" />
     <Compile Include="NHibernate\Conventions\EnumConvention.cs" />
     <Compile Include="NHibernate\NHibernateBaseTest.cs" />
+    <Compile Include="NHibernate\NHibernateSession.cs" />
     <Compile Include="NHibernate\Spatial\SqLiteGeometryType.cs" />
     <Compile Include="NHibernate\Spatial\SqLiteGeometryTypeConvention.cs" />
     <Compile Include="NHibernate\Spatial\SqlServer2008GeographyTypeConvention.cs" />
@@ -95,7 +103,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Wcf\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>$(SolutionDir)..\..\Tools\nuget install $(ProjectDir)packages.config -o $(SolutionDir)Packages</PreBuildEvent>

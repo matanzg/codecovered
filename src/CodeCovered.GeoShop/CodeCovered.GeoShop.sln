@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCovered.GeoShop.Server.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCovered.GeoShop.Server.Mapping", "CodeCovered.GeoShop.Server.Mapping\CodeCovered.GeoShop.Server.Mapping.csproj", "{B16EF899-B1F4-47AA-8A1E-46C6E222556B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCovered.GeoShop.Server.WcfServices", "CodeCovered.GeoShop.Server.WcfServices\CodeCovered.GeoShop.Server.WcfServices.csproj", "{9285D9A7-690A-45B8-8476-016CE805BA2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCovered.GeoShop.Contracts", "CodeCovered.GeoShop.Contracts\CodeCovered.GeoShop.Contracts.csproj", "{74D90EA3-3D0E-45AB-B683-20592B24BC6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{B16EF899-B1F4-47AA-8A1E-46C6E222556B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B16EF899-B1F4-47AA-8A1E-46C6E222556B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B16EF899-B1F4-47AA-8A1E-46C6E222556B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9285D9A7-690A-45B8-8476-016CE805BA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9285D9A7-690A-45B8-8476-016CE805BA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9285D9A7-690A-45B8-8476-016CE805BA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9285D9A7-690A-45B8-8476-016CE805BA2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D90EA3-3D0E-45AB-B683-20592B24BC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74D90EA3-3D0E-45AB-B683-20592B24BC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74D90EA3-3D0E-45AB-B683-20592B24BC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74D90EA3-3D0E-45AB-B683-20592B24BC6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

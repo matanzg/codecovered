@@ -41,6 +41,11 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
             return new Branch();
         }
 
+        protected Category GetDefaultCategory(string description = "food")
+        {
+            return new Category { Description = description };
+        }
+
         protected City GetDefaultCity()
         {
             return new City();
@@ -63,6 +68,16 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
                            HomeAddress = address,
                            Name = name
                        };
+        }
+
+        protected Product GetDefaultProdcut(string name = "name", string description = "desc", double unitPrice = 10)
+        {
+            return new Product
+            {
+                Description = description,
+                Name = name,
+                UnitPrice = unitPrice,
+            };
         }
 
         protected Store GetDefaultStore(string name = "Steam", Person contact = null)

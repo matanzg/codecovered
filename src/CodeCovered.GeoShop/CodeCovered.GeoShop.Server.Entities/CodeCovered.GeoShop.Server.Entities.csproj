@@ -46,8 +46,10 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Branch.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="InventoryItem.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

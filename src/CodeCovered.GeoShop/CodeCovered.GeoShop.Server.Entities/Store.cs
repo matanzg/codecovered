@@ -21,6 +21,7 @@ namespace CodeCovered.GeoShop.Server.Entities
         {
             get { return _branches.AsEnumerable(); }
         }
+
         public virtual void AddBranch(Branch branch)
         {
             Validate.ThatArgumentNotNull(() => branch);
