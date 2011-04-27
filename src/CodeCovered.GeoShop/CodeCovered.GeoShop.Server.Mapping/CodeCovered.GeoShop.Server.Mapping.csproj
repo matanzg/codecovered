@@ -71,15 +71,11 @@
     <Compile Include="AutoMapper\ProductMapCreator.cs" />
     <Compile Include="ConfigurationFactory.cs" />
     <Compile Include="Fluent\AddressMap.cs" />
-    <Compile Include="Fluent\Behaviors\ClassMapWithBehaviors.cs" />
-    <Compile Include="Fluent\Behaviors\GuidEntityFluentBehavior.cs" />
-    <Compile Include="Fluent\Behaviors\IFluentBehavior.cs" />
-    <Compile Include="Fluent\Behaviors\GeoDataFluentBehavior.cs" />
-    <Compile Include="Fluent\Behaviors\IntEntityFluentBehavior.cs" />
     <Compile Include="Fluent\BranchMap.cs" />
     <Compile Include="Fluent\CategoryMap.cs" />
     <Compile Include="Fluent\CityMap.cs" />
     <Compile Include="Fluent\CountryMap.cs" />
+    <Compile Include="Fluent\ExpirableProductMap.cs" />
     <Compile Include="Fluent\InventoryItemMap.cs" />
     <Compile Include="Fluent\PersonMap.cs" />
     <Compile Include="Fluent\ProductMap.cs" />

@@ -1,26 +1,17 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
+using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class InventoryItemMap : ClassMapWithBehaviors<InventoryItem>
+    public class InventoryItemMap : ClassMap<InventoryItem>
     {
         public InventoryItemMap()
         {
-            Map(ii => ii.Amount);
-            References(ii => ii.Branch);
-            References(ii => ii.Product);
-        }
-
-        protected override IFluentBehavior<InventoryItem>[] Behaviors
-        {
-            get
-            {
-                return new IFluentBehavior<InventoryItem>[]
-                           {
-                               new IntEntityFluentBehavior<InventoryItem>()
-                           };
-            }
+            Id(x => x.Id);
+            Version(x => x.Version);
+            Map(x => x.Amount);
+            References(x => x.Branch);
+            References(x => x.Product);
         }
     }
 }

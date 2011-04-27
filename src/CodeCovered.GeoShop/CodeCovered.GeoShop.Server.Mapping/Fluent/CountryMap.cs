@@ -1,32 +1,22 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class CountryMap : ClassMapWithBehaviors<Country>
+    public class CountryMap : ClassMap<Country>
     {
         public CountryMap()
         {
-            Map(c => c.Name).Not.Nullable();
+            Id(x => x.Id);
+            Version(x => x.Version);
+            Map(x => x.GeoData);
+            Map(x => x.Name).Not.Nullable();
 
-            HasMany(c => c.Cities)
+            HasMany(x => x.Cities)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .AsSet()
                 .Inverse()
                 .Cascade.All();
-        }
-
-        protected override IFluentBehavior<Country>[] Behaviors
-        {
-            get
-            {
-                return new IFluentBehavior<Country>[]
-                           {
-                               new GeoDataFluentBehavior<Country>(),
-                               new IntEntityFluentBehavior<Country>()
-                           };
-            }
         }
     }
 }

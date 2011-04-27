@@ -16,7 +16,7 @@ namespace CodeCovered.GeoShop.Integration.Tests
     [TestFixture]
     public class InsertGeoData : IntegrationBaseTest
     {
-        [Test]
+        [Test, Ignore]
         public void InsertDataFromShapeFile()
         {
             using (var sessionFactory = GetSessionFactory())

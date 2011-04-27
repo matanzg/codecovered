@@ -7,7 +7,7 @@ namespace CodeCovered.GeoShop.Server.Mapping.Fluent
     {
         public AddressMap()
         {
-            References(a => a.City);
+            References(x => x.City);
             Map(x => x.Number);
             Map(x => x.PostalCode);
             Map(x => x.Street);

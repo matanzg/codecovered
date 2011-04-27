@@ -1,27 +1,18 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
+using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class PersonMap : ClassMapWithBehaviors<Person>
+    public class PersonMap : ClassMap<Person>
     {
         public PersonMap()
         {
-            Map(p => p.Name).Not.Nullable();
-            Map(p => p.Gender).Not.Nullable();
+            Id(x => x.Id);
+            Version(x => x.Version);
+            Map(x => x.Name).Not.Nullable();
+            Map(x => x.Gender).Not.Nullable();
 
-            Component(p => p.HomeAddress).ColumnPrefix("Home");
-        }
-
-        protected override IFluentBehavior<Person>[] Behaviors
-        {
-            get
-            {
-                return new IFluentBehavior<Person>[]
-                           {
-                               new IntEntityFluentBehavior<Person>()
-                           };
-            }
+            Component(x => x.HomeAddress).ColumnPrefix("Home");
         }
     }
 }

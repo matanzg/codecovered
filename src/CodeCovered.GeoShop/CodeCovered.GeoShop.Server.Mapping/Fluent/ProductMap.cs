@@ -1,29 +1,20 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class ProductMap : ClassMapWithBehaviors<Product>
+    public class ProductMap : ClassMap<Product>
     {
         public ProductMap()
         {
-            Map(p => p.Name);
-            Map(p => p.Description);
-            Map(p => p.UnitPrice);
+            Id(x => x.Id);
+            Version(x => x.Version);
 
-            References(p => p.Category);
-        }
+            Map(x => x.Name);
+            Map(x => x.Description);
+            Map(x => x.UnitPrice);
 
-        protected override IFluentBehavior<Product>[] Behaviors
-        {
-            get
-            {
-                return new IFluentBehavior<Product>[]
-                           {
-                               new IntEntityFluentBehavior<Product>()
-                           };
-            }
+            References(x => x.Category);
         }
     }
 }

@@ -1,26 +1,17 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
+using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class CityMap : ClassMapWithBehaviors<City>
+    public class CityMap : ClassMap<City>
     {
         public CityMap()
         {
-            Map(c => c.Name);
-            References(c => c.Country);
-        }
-
-        protected override IFluentBehavior<City>[] Behaviors
-        {
-            get
-            {
-                return new IFluentBehavior<City>[]
-                           {
-                               new IntEntityFluentBehavior<City>(),
-                               new GeoDataFluentBehavior<City>()
-                           };
-            }
+            Id(x => x.Id);
+            Version(x => x.Version);
+            Map(x => x.GeoData);
+            Map(x => x.Name);
+            References(x => x.Country);
         }
     }
 }

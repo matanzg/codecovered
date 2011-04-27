@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using CodeCovered.GeoShop.Infrastructure.Factories;
 using CodeCovered.GeoShop.Server.Entities;
+using CodeCovered.GeoShop.Server.Mapping;
 using GeoAPI.Geometries;
 using GisSharpBlog.NetTopologySuite.Geometries;
 using NHibernate.Linq;
@@ -13,10 +14,12 @@ namespace CodeCovered.GeoShop.Integration.Tests
     [TestFixture]
     public class SqlServer2008GeoTests : IntegrationBaseTest
     {
-        [SetUp]
-        public new void Setup()
+        protected override Server.Mapping.ExportSchemaSetting Export
         {
-            CleanDatabaseData();
+            get
+            {
+                return ExportSchemaSetting.Export;
+            }
         }
 
         [Test]
@@ -42,9 +45,5 @@ namespace CodeCovered.GeoShop.Integration.Tests
             Assert.That(result.Any(e => e.Id == country2.Id));
         }
 
-        protected override bool ShowSql
-        {
-            get { return true; }
-        }
     }
 }

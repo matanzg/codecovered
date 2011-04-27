@@ -1,32 +1,23 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class StoreMap : ClassMapWithBehaviors<Store>
+    public class StoreMap : ClassMap<Store>
     {
         public StoreMap()
         {
-            Map(s => s.Name).Not.Nullable();
-            References(s => s.Contact);
+            Id(x => x.Id);
+            Version(x => x.Version);
 
-            HasMany(s => s.Branches)
+            Map(x => x.Name).Not.Nullable();
+            References(x => x.Contact);
+
+            HasMany(x => x.Branches)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Cascade.All()
                 .Inverse()
                 .AsSet();
-        }
-
-        protected override IFluentBehavior<Store>[] Behaviors
-        {
-            get 
-            { 
-                return new IFluentBehavior<Store>[]
-                                            {
-                                                new IntEntityFluentBehavior<Store>()
-                                            };
-            }
         }
     }
 }

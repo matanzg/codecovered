@@ -1,37 +1,28 @@
 using CodeCovered.GeoShop.Server.Entities;
-using CodeCovered.GeoShop.Server.Mapping.Fluent.Behaviors;
 using FluentNHibernate.Mapping;
 
 namespace CodeCovered.GeoShop.Server.Mapping.Fluent
 {
-    public class BranchMap : ClassMapWithBehaviors<Branch>
+    public class BranchMap : ClassMap<Branch>
     {
         public BranchMap()
         {
-            Component(b => b.Address).ColumnPrefix("Address");
+            Id(x => x.Id);
+            Version(x => x.Version);
 
-            Map(b => b.Name);
+            Map(x => x.Name);
+            Map(x => x.GeoData);
 
-            References(b => b.Store);
-            References(b => b.Manager);
+            References(x => x.Store);
+            References(x => x.Manager);
+
+            Component(x => x.Address).ColumnPrefix("Address");
 
             HasMany(b => b.Inventory)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Cascade.All()
                 .Inverse()
                 .AsSet();
-        }
-
-        protected override IFluentBehavior<Branch>[] Behaviors
-        {
-            get
-            {
-                return new IFluentBehavior<Branch>[]
-                                            {
-                                                new GeoDataFluentBehavior<Branch>(),
-                                                new IntEntityFluentBehavior<Branch>()
-                                            };
-            }
         }
     }
 }
