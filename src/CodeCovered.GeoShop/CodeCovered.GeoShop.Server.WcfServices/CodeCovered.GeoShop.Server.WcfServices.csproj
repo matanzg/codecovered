@@ -116,6 +116,10 @@
       <Project>{47EE14C5-3B4E-48BE-9DFE-2000066EDF9B}</Project>
       <Name>CodeCovered.GeoShop.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeCovered.GeoShop.Server.BL\CodeCovered.GeoShop.Server.BL.csproj">
+      <Project>{FBCCBCBD-51F8-4A3E-8F78-CEFFD010D1F0}</Project>
+      <Name>CodeCovered.GeoShop.Server.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeCovered.GeoShop.Server.Entities\CodeCovered.GeoShop.Server.Entities.csproj">
       <Project>{361555D1-4F9D-4951-8D1C-5194B0AACE96}</Project>
       <Name>CodeCovered.GeoShop.Server.Entities</Name>

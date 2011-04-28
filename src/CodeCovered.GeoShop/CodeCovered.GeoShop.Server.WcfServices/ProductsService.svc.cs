@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using CodeCovered.GeoShop.Contracts.Dto;
 using CodeCovered.GeoShop.Contracts.Interface;
 using CodeCovered.GeoShop.Infrastructure.NHibernate;
+using CodeCovered.GeoShop.Server.BL;
 using CodeCovered.GeoShop.Server.Entities;
 using GisSharpBlog.NetTopologySuite.Geometries;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace CodeCovered.GeoShop.Server.WcfServices
 {
@@ -14,7 +18,8 @@ namespace CodeCovered.GeoShop.Server.WcfServices
         private readonly IMappingEngine _mappingEngine;
         private readonly ISessionFactory _sessionFactory;
 
-        public ProductsService() : this(
+        public ProductsService()
+            : this(
                 Global.Container.Resolve<ISessionFactory>(),
                 Global.Container.Resolve<IMappingEngine>())
         {
@@ -27,13 +32,14 @@ namespace CodeCovered.GeoShop.Server.WcfServices
             _mappingEngine = mappingEngine;
         }
 
-        public SimplePoint GetProductLocation(int productId)
+        public IEnumerable<BranchDto> QueryBranchesByCenterPoint(SimplePoint center, double buffer)
         {
             return InAUnitOfWork(session =>
             {
-                var product = session.Get<Product>(productId);
-                var productLocation = new Point(1, 1);//product.Branch.Location);
-                return _mappingEngine.Map<Point, SimplePoint>(productLocation);
+                var geoLocator = new GeoLocator(session);
+                var geoPoint = _mappingEngine.Map<SimplePoint, Point>(center);
+                var results = geoLocator.Locate<Branch>(geoPoint, buffer);
+                return results.Select(r => _mappingEngine.Map<Branch, BranchDto>(r)).ToList();
             });
         }
 
@@ -46,16 +52,29 @@ namespace CodeCovered.GeoShop.Server.WcfServices
             });
         }
 
-        public void UpdateProduct(ProductDto productDto)
+        public ProductDto SaveOrUpdateProduct(ProductDto productDto)
         {
-            InAUnitOfWork(session =>
+            return InAUnitOfWork(session =>
             {
                 var product = _mappingEngine.Map<ProductDto, Product>(productDto);
+                session.SaveOrUpdate(product);
                 return _mappingEngine.Map<Product, ProductDto>(product);
             });
         }
 
-        private void InAUnitOfWork(Action<ISession> action)
+        public IEnumerable<CategoryDto> GetAllCategories()
+        {
+            return InAUnitOfWork(session => session.Query<Category>().Select(category =>
+                _mappingEngine.Map<Category, CategoryDto>(category))
+                .ToList());
+        }
+
+        public void CreateCategory(string description)
+        {
+            InAUnitOfWork(session => session.Save(new Category { Description = description }));
+        }
+
+        private T InAUnitOfWork<T>(Func<ISession, T> func)
         {
             using (var session = _sessionFactory.OpenSession())
             using (var tx = session.BeginTransaction())
@@ -64,8 +83,9 @@ namespace CodeCovered.GeoShop.Server.WcfServices
                 {
                     NHibernateSession.InitCurrentSession(session);
 
-                    action(session);
+                    var result = func(session);
                     tx.Commit();
+                    return result;
                 }
                 catch
                 {
@@ -81,7 +101,7 @@ namespace CodeCovered.GeoShop.Server.WcfServices
             }
         }
 
-        private T InAUnitOfWork<T>(Func<ISession, T> func)
+        private void InAUnitOfWork(Action<ISession> action)
         {
             using (var session = _sessionFactory.OpenSession())
             using (var tx = session.BeginTransaction())
@@ -90,9 +110,8 @@ namespace CodeCovered.GeoShop.Server.WcfServices
                 {
                     NHibernateSession.InitCurrentSession(session);
 
-                    var result = func(session);
+                    action(session);
                     tx.Commit();
-                    return result;
                 }
                 catch
                 {

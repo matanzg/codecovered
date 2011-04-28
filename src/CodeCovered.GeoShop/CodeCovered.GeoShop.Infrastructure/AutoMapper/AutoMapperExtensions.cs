@@ -12,7 +12,7 @@ namespace CodeCovered.GeoShop.Infrastructure.AutoMapper
             where TDest : class, new()
         {
             return expression.ConstructUsing(src =>
-                    getSession().Get<TDest>(getId(src) ?? new TDest()));
+                    getSession().Get<TDest>(getId(src)) ?? new TDest());
         }
 
         public static NHibernateReferenceConfiguration<TSrc, TMember> LoadNHibernateReference<TSrc, TMember>(

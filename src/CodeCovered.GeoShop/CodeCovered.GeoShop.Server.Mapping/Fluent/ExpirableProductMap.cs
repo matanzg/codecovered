@@ -7,7 +7,7 @@ namespace CodeCovered.GeoShop.Server.Mapping.Fluent
     {
         public ExpirableProductMap()
         {
-            Map(x => x.ExpirationData);
+            Map(x => x.ExpirationDate);
         }
     }
 }

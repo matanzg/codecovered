@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMappingExamples.cs" />
     <Compile Include="AutoMappingTests.cs" />
     <Compile Include="DomainBaseTest.cs" />
     <Compile Include="PersistenceSpecificationTests.cs" />
@@ -79,6 +80,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeCovered.GeoShop.Contracts\CodeCovered.GeoShop.Contracts.csproj">
+      <Project>{74D90EA3-3D0E-45AB-B683-20592B24BC6B}</Project>
+      <Name>CodeCovered.GeoShop.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeCovered.GeoShop.Infrastructure\CodeCovered.GeoShop.Infrastructure.csproj">
       <Project>{47EE14C5-3B4E-48BE-9DFE-2000066EDF9B}</Project>
       <Name>CodeCovered.GeoShop.Infrastructure</Name>

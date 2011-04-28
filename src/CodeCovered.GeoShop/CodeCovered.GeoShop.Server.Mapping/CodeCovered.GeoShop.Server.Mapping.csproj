@@ -47,6 +47,7 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="NetTopologySuite, Version=1.7.3.36606, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL" />
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.1.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
@@ -68,7 +69,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper\BranchMapCreator.cs" />
+    <Compile Include="AutoMapper\CategoryMapCreator.cs" />
+    <Compile Include="AutoMapper\ExpirableProductMapCreator.cs" />
     <Compile Include="AutoMapper\ProductMapCreator.cs" />
+    <Compile Include="AutoMapper\SimplePointMapCreator.cs" />
     <Compile Include="ConfigurationFactory.cs" />
     <Compile Include="Fluent\AddressMap.cs" />
     <Compile Include="Fluent\BranchMap.cs" />

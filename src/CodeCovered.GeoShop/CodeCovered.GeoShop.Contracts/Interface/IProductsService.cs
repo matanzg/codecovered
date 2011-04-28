@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ServiceModel;
 using CodeCovered.GeoShop.Contracts.Dto;
 
@@ -7,12 +8,18 @@ namespace CodeCovered.GeoShop.Contracts.Interface
     public interface IProductsService
     {
         [OperationContract]
-        SimplePoint GetProductLocation(int productId);
+        IEnumerable<BranchDto> QueryBranchesByCenterPoint(SimplePoint center, double buffer);
 
         [OperationContract]
         ProductDto GetProductDetails(int productId);
 
         [OperationContract]
-        void UpdateProduct(ProductDto productDto);
+        ProductDto SaveOrUpdateProduct(ProductDto productDto);
+
+        [OperationContract]
+        IEnumerable<CategoryDto> GetAllCategories();
+
+        [OperationContract]
+        void CreateCategory(string description);
     }
 }

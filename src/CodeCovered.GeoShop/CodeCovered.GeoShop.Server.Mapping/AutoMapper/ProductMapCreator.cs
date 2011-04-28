@@ -12,6 +12,7 @@ namespace CodeCovered.GeoShop.Server.Mapping.AutoMapper
         public void CreateMap(IConfiguration configuration)
         {
             configuration.CreateMap<Product, ProductDto>()
+                .Include<ExpirableProduct, ExpirableProductDto>()
                 .ForMember(d => d.code, o => o.MapFrom(src => src.Id))
                 .ForMember(d => d.desc, o => o.MapFrom(src => src.Description))
                 .ForMember(d => d.cat_id, o => o.MapFrom(src => src.Category.Id))

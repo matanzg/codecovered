@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\BranchDto.cs" />
+    <Compile Include="Dto\ExpirableProductDto.cs" />
     <Compile Include="Dto\ProductDto.cs" />
     <Compile Include="Dto\SimplePoint.cs" />
+    <Compile Include="Dto\CategoryDto.cs" />
     <Compile Include="Interface\IProductsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

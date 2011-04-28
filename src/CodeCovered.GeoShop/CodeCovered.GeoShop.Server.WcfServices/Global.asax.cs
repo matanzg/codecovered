@@ -13,11 +13,13 @@ using AutoMapper.Mappers;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using CodeCovered.GeoShop.Infrastructure.AutoMapper;
+using CodeCovered.GeoShop.Infrastructure.Factories;
 using CodeCovered.GeoShop.Server.Entities;
 using CodeCovered.GeoShop.Server.Mapping;
 using CodeCovered.GeoShop.Server.Mapping.AutoMapper;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using GisSharpBlog.NetTopologySuite.Geometries;
 using NHibernate;
 using ISession = NHibernate.ISession;
 
@@ -32,7 +34,7 @@ namespace CodeCovered.GeoShop.Server.WcfServices
             ConfigureContainer();
         }
 
-        private void ConfigureContainer()
+        private static void ConfigureContainer()
         {
             Container = new WindsorContainer();
 
@@ -88,8 +90,22 @@ namespace CodeCovered.GeoShop.Server.WcfServices
                 session.Save(matan);
 
                 var store = new Store { Contact = matan, Name = "Main Office"};
-                var branch1 = new Branch { Address = address, Manager = matan, Name = "branch1" };
-                var branch2 = new Branch { Address = address, Manager = matan, Name = "branch2" };
+                var branch1 = new Branch
+                                  {
+                                      Address = address,
+                                      Manager = matan,
+                                      Name = "branch1",
+                                      Location = (Point) Default.GeometryFactory.CreatePoint(new Coordinate(32, 34))
+                                  };
+
+                var branch2 = new Branch
+                                  {
+                                      Address = address,
+                                      Manager = matan,
+                                      Name = "branch2",
+                                      Location = (Point) Default.GeometryFactory.CreatePoint(new Coordinate(32.5, 34.5))
+                                  };
+
                 store.AddBranch(branch1);
                 store.AddBranch(branch2);
 
