@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using CodeCovered.GeoShop.Infrastructure.Factories;
 using CodeCovered.GeoShop.Server.Entities;

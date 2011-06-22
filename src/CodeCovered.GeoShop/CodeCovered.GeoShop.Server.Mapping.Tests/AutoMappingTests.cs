@@ -12,7 +12,7 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
     public class AutoMappingTests : DomainBaseTest
     {
         [SetUp]
-        public void Setup()
+        public new void Setup()
         {
             Mapper.Reset();
             Mapper.Initialize(cfg => ApplyMap.On(cfg).AddFromAssemblyOf<ProductMapCreator>().Apply());

@@ -71,53 +71,54 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
         [Test]
         public void ArraysAndBasicPolymorphism()
         {
-            Mapper.CreateMap<ArraySource, ArrayDestination>()
-                .Include<ArraySourceChild, ArrayDestinationChild>();
+            Mapper.CreateMap<SourceValue, DestinationValue>()
+                .Include<SourceValueChild, DestinationValueChild>();
 
-            Mapper.CreateMap<ArraySourceChild, ArrayDestinationChild>();
-
-            var sources = new[]
+            Mapper.CreateMap<SourceValueChild, DestinationValueChild>();
+            Mapper.Map<SourceValue, DestinationValue>(new SourceValueChild());
+            
+            var sources = new IHaveValue[]
 	        {
-		        new ArraySource { Value = 5 },
-		        new ArraySourceChild { Value = 6 },
-		        new ArraySource { Value = 7 }
+		        new SourceValue { Value = 5 },
+		        new SourceValueChild { Value = 6 },
+		        new SourceValue { Value = 7 }
 	        };
 
-            IEnumerable<ArrayDestination> ienumerableDest = Mapper.Map<ArraySource[], IEnumerable<ArrayDestination>>(sources);
-            ICollection<ArrayDestination> icollectionDest = Mapper.Map<ArraySource[], ICollection<ArrayDestination>>(sources);
-            IList<ArrayDestination> ilistDest = Mapper.Map<ArraySource[], IList<ArrayDestination>>(sources);
-            List<ArrayDestination> listDest = Mapper.Map<ArraySource[], List<ArrayDestination>>(sources);
-            ArrayDestination[] arrayDest = Mapper.Map<ArraySource[], ArrayDestination[]>(sources);
+            IEnumerable<DestinationValue> ienumerableDest = Mapper.Map<IHaveValue[], IEnumerable<DestinationValue>>(sources);
+            ICollection<DestinationValue> icollectionDest = Mapper.Map<IHaveValue[], ICollection<DestinationValue>>(sources);
+            IList<DestinationValue> ilistDest = Mapper.Map<IHaveValue[], IList<DestinationValue>>(sources);
+            List<DestinationValue> listDest = Mapper.Map<IHaveValue[], List<DestinationValue>>(sources);
+            DestinationValue[] dest = Mapper.Map<IHaveValue[], DestinationValue[]>(sources);
 
             CollectionAssert.AreEqual(sources, ienumerableDest, new ValueComparer());
             CollectionAssert.AreEqual(sources, icollectionDest, new ValueComparer());
             CollectionAssert.AreEqual(sources, ilistDest, new ValueComparer());
             CollectionAssert.AreEqual(sources, listDest, new ValueComparer());
-            CollectionAssert.AreEqual(sources, arrayDest, new ValueComparer());
+            CollectionAssert.AreEqual(sources, dest, new ValueComparer());
 
-            Assert.That(listDest[0], Is.InstanceOf<ArrayDestination>());
-            Assert.That(listDest[1], Is.InstanceOf<ArrayDestinationChild>());
-            Assert.That(listDest[2], Is.InstanceOf<ArrayDestination>());
+            Assert.That(listDest[0], Is.InstanceOf<DestinationValue>());
+            Assert.That(listDest[1], Is.InstanceOf<DestinationValueChild>());
+            Assert.That(listDest[2], Is.InstanceOf<DestinationValue>());
         }
 
         [Test]
         public void ComplexPolymorphism()
         {
-            Mapper.CreateMap<A, DtoA>()
-                .Include<B, DtoB>()
+            Mapper.CreateMap<BaseClass, BaseDto>()
+                .Include<Class, Dto>()
                 .ForMember(dest => dest.IgnoreMe, o => o.Ignore())
                 .ForMember(dest => dest.DtoVal1, o => o.MapFrom(src => src.Val1));
 
-            Mapper.CreateMap<B, DtoB>()
-                .Include<C, DtoC>()
+            Mapper.CreateMap<Class, Dto>()
+                .Include<Subclass, SubDto>()
                 .ForMember(dest => dest.DtoVal2, o => o.MapFrom(src => src.Val2));
 
-            Mapper.CreateMap<C, DtoC>()
+            Mapper.CreateMap<Subclass, SubDto>()
                 .ForMember(dest => dest.DtoVal3, o => o.MapFrom(src => src.Val3));
 
             Mapper.AssertConfigurationIsValid();
 
-            A c = new C
+            BaseClass c = new Subclass
                       {
                           Val1 = 1,
                           Val2 = 2,
@@ -125,25 +126,30 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
                           IgnoreMe = 100
                       };
 
-            DtoA result = Mapper.Map<A, DtoA>(c);
+            BaseDto result = Mapper.Map<BaseClass, BaseDto>(c);
 
             Assert.That(result.DtoVal1, Is.EqualTo(1));
-            Assert.That((result as DtoB).DtoVal2, Is.EqualTo(2));
-            Assert.That((result as DtoC).DtoVal3, Is.EqualTo(3));
+            Assert.That((result as Dto).DtoVal2, Is.EqualTo(2));
+            Assert.That((result as SubDto).DtoVal3, Is.EqualTo(3));
 
-            // Would probably fail...
-            //Assert.That((result as DtoC).IgnoreMe, Is.EqualTo(0)); 
+            // Would fail...
+            //Assert.That((result as SubDto).IgnoreMe, Is.EqualTo(0)); 
         }
 
         [Test]
         public void Customization()
         {
             Mapper.CreateMap<CustomEntity, CustomDto>()
-                .ConstructUsing(ConstructUsingMe)
+                .ConstructUsing(ConstrcutionMethod)
+                //.ConvertUsing(c => new CustomDto())
+                //.WithProfile("SomeNonDefaultProfile")
                 .BeforeMap(ImBeforeMap)
                 .ForMember(dest => dest.ValueAndDescription, o =>
                     o.ResolveUsing(new MyCustomResolver()).FromMember(src => src.Value))
-                .ForMember(dest => dest.Counter, o => o.Ignore())
+                    //o.NullSubstitute(""))
+                    //o.UseDestinationValue())
+                    //o.UseValue("Bla Bla Bla"))
+                .ForMember(dest => dest.Counter, o => o.Ignore()) // We want to pass the assertion...
                 .AfterMap(ImAfterMap);
 
             Mapper.AssertConfigurationIsValid();
@@ -153,8 +159,6 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
             Assert.That(dto.ValueAndDescription, Is.EqualTo("the value is 1"));
             Assert.That(dto.Counter, Is.EqualTo(3));
         }
-
-        #region boring crap
 
         private void ImAfterMap(CustomEntity arg1, CustomDto arg2)
         {
@@ -166,31 +170,47 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
             arg2.Counter++;
         }
 
-        private CustomDto ConstructUsingMe(CustomEntity arg)
+        private CustomDto ConstrcutionMethod(CustomEntity arg)
         {
             return new CustomDto { Counter = 1 };
         }
 
-        #endregion
-
         #region Pitfalls
 
-        public void Pitfalls()
+        public void TemporalCoupeling()
         {
             // Harmless, but confusing - try to avoid the static use of Mapper...
             Mapper.CreateMap<BasicEntity, BasicDto>();
             Mapper.Map<BasicEntity, BasicDto>(null);
 
-            // Won't apply include
-            Mapper.CreateMap<C, DtoC>();
-            Mapper.CreateMap<B, DtoB>().Include<C, DtoC>();
+            // Throws
+            Mapper.Map<BasicEntity, BasicDto>(null);
+            Mapper.CreateMap<BasicEntity, BasicDto>();
 
+            // Doesn't Throw, yet isn't what we want...
+            Mapper.DynamicMap<BasicEntity, BasicDto>(null);
+            Mapper.CreateMap<BasicEntity, BasicDto>();
+        }
+
+        public void InheritanceOrder()
+        {
+            // Inheritace works!
+            Mapper.CreateMap<Class, Dto>().Include<Subclass, SubDto>();
+            Mapper.CreateMap<Subclass, SubDto>();
+
+            // Won't apply include...
+            Mapper.CreateMap<Subclass, SubDto>();
+            Mapper.CreateMap<Class, Dto>().Include<Subclass, SubDto>();
+        }
+
+        public void ContextPerConfigNotPerMap()
+        {
             // It may be obvious, but - your session ( \ proxy \ etc) is an instance!
             ISession session = NHibernateSession.Current;
             Mapper.CreateMap<BasicDto, BasicEntity>()
                 .ConstructUsing(src => session.Get<BasicEntity>(src.Id));
 
-            // a better use:
+            // ServiceLocation can help...
             Mapper.CreateMap<BasicDto, BasicEntity>()
                 .ConstructUsing(src => NHibernateSession.Current.Get<BasicEntity>(src.Id));
         }
@@ -236,12 +256,12 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
         public int TimeTicks { get; set; }
     }
 
-    public class ArraySource : IHaveValue
+    public class SourceValue : IHaveValue
     {
         public int Value { get; set; }
     }
 
-    public class ArraySourceChild : ArraySource { }
+    public class SourceValueChild : SourceValue { }
 
     public interface IHaveValue
     {
@@ -256,42 +276,42 @@ namespace CodeCovered.GeoShop.Server.Mapping.Tests
         }
     }
 
-    public class ArrayDestination : IHaveValue
+    public class DestinationValue : IHaveValue
     {
         public int Value { get; set; }
     }
 
-    public class ArrayDestinationChild : ArrayDestination { }
+    public class DestinationValueChild : DestinationValue { }
 
 
-    public class C : B
+    public class Subclass : Class
     {
         public int Val3 { get; set; }
     }
 
-    public class B : A
+    public class Class : BaseClass
     {
         public int Val2 { get; set; }
     }
 
-    public class A
+    public abstract class BaseClass
     {
         public int Val1 { get; set; }
         public int IgnoreMe { get; set; }
     }
 
 
-    public class DtoC : DtoB
+    public class SubDto : Dto
     {
         public int DtoVal3 { get; set; }
     }
 
-    public class DtoB : DtoA
+    public class Dto : BaseDto
     {
         public int DtoVal2 { get; set; }
     }
 
-    public class DtoA
+    public abstract class BaseDto
     {
         public int IgnoreMe { get; set; }
         public int DtoVal1 { get; set; }

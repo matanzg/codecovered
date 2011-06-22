@@ -100,6 +100,7 @@
       <DependentUpon>ProductsService.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
